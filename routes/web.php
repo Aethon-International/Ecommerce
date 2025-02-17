@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/welcome', function () {
     return view('welcome');
 });
 
@@ -31,5 +31,11 @@ Route::middleware('auth')->group(function () {
 
 require __DIR__.'/auth.php';
 
-
-Route::get('/home', [homecontroller::class, 'index']);
+//frontedn routes
+Route::get('/', [homecontroller::class, 'index']);
+//backend rotute
+Route::get('/admin', [homecontroller::class, 'admin']);
+// user admin seprate login 
+Route::get('/redirect', [homecontroller::class, 'redirect']);
+// logout routes 
+Route::get('/logout', [homecontroller::class, 'logout']);

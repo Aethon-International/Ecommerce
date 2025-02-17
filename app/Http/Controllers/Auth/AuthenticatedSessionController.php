@@ -29,7 +29,15 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        $user = Auth::user();
+
+        // اگر یوزر کی type 1 ہے تو Admin Panel پر بھیجیں
+        if ($user->usertype == 1) {
+            return redirect()->intended('/admin');
+        } 
+        
+        // اگر یوزر کی type 0 ہے تو Home Page پر بھیجیں
+        return redirect()->intended('/');
     }
 
     /**
