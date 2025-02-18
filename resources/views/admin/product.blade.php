@@ -38,7 +38,7 @@ License: For each use you must have a valid license purchased only from above li
 
             <div class="page-content">
 
-                <div class="">
+                <div class="row">
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
@@ -51,42 +51,40 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Name</label>
-                                                <input type="text" name="name" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Product Name Here">
+                                                <input type="text" name="name" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Product Name Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Price</label>
-                                                <input type="text" name="price" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Price Here">
+                                                <input type="text" name="price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Price Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Original Price</label>
-                                                <input type="text" name="original_price" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Original Price Here">
+                                                <input type="text" name="original_price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Original Price Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Quantity</label>
-                                                <input type="text" name="quantity" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Quantity Here">
+                                                <input type="text" name="quantity" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Quantity Here">
                                             </div>
                                         </div>
                 
                                         <!-- Right Column -->
                                         <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label for="exampleInputUsername1" class="form-label">Category</label>
-                                                <input type="text" name="category_id" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Category Here">
+                                                <label for="category_id" class="form-label">Category</label>
+                                                <select name="category_id" class="form-control" id="category_id" required>
+                                                    <option value="" disabled selected>Select Category</option>
+                                                    @foreach($category as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                    @endforeach
+                                                </select>
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Description</label>
-                                                <input type="text" name="description" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off" placeholder="Add Description Here">
+                                                <input type="text" name="description" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Description Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Image</label>
-                                                <input type="file" name="image" class="form-control" id="exampleInputUsername1"
-                                                    autocomplete="off">
+                                                <input type="file" name="image" class="form-control" id="exampleInputUsername1" required autocomplete="off">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="status" class="form-label">Status</label>
@@ -104,7 +102,6 @@ License: For each use you must have a valid license purchased only from above li
                     </div>
                 </div>
                 
-
                     @if(session('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ session('success') }}

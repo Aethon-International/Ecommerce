@@ -52,6 +52,6 @@ Route::get('/delete/category/{id}', [admincontroller::class, 'destroy']);
 // producdt route
 Route::get('/products', [productcontroller::class, 'index']);
 // add products route data 
-Route::get('/add/products', [productcontroller::class, 'store']);
+Route::post('/add/product', [productcontroller::class, 'store']);
 
 

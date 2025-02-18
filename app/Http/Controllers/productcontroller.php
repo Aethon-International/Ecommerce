@@ -13,7 +13,8 @@ class productcontroller extends Controller
 {
    public function index()
    {
-    return view('admin.product');
+    $category=category::all();
+    return view('admin.product',compact('category'));
    }
    public function store(Request $request)
    {
