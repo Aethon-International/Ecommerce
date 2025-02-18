@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\homecontroller;
+use App\Http\Controllers\productcontroller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,4 +49,9 @@ Route::get('/category', [admincontroller::class, 'index']);
 Route::post('/add/category', [admincontroller::class, 'store']);
 // delete category 
 Route::get('/delete/category/{id}', [admincontroller::class, 'destroy']);
+// producdt route
+Route::get('/products', [productcontroller::class, 'index']);
+// add products route data 
+Route::get('/add/products', [productcontroller::class, 'store']);
+
 

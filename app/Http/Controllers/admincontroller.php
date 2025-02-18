@@ -37,4 +37,5 @@ class admincontroller extends Controller
 
         return redirect()->back()->with('warning', 'Category Deleted Successfully!');
     }
+    
 }
