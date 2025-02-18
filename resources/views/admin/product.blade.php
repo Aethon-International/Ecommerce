@@ -55,15 +55,15 @@ License: For each use you must have a valid license purchased only from above li
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Price</label>
-                                                <input type="text" name="price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Price Here">
+                                                <input type="number" name="price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Price Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Original Price</label>
-                                                <input type="text" name="original_price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Original Price Here">
+                                                <input type="number" name="original_price" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Original Price Here">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Quantity</label>
-                                                <input type="text" name="quantity" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Quantity Here">
+                                                <input type="number" name="quantity" class="form-control" id="exampleInputUsername1" required autocomplete="off" placeholder="Add Quantity Here">
                                             </div>
                                         </div>
                 
@@ -71,7 +71,7 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="category_id" class="form-label">Category</label>
-                                                <select name="category_id" class="form-control" id="category_id" required>
+                                                <select name="category_name" class="form-control" id="category_id" required>
                                                     <option value="" disabled selected>Select Category</option>
                                                     @foreach($category as $category)
                                                         <option value="{{ $category->id }}">{{ $category->name }}</option>

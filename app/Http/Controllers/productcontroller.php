@@ -21,7 +21,7 @@ class productcontroller extends Controller
     // Creating the new product directly without validation
     $product = new Product;
     $product->name = $request->name;
-    $product->category_id = $request->category_id;
+    $product->category_id = $request->category_name;
     $product->price = $request->price;
     $product->original_price = $request->original_price;
     $product->description = $request->description;
@@ -35,6 +35,6 @@ class productcontroller extends Controller
 
     $product->save();  // Save the product to the database
 
-    return redirect()->route('products.index')->with('success', 'Product created successfully.');
+    return redirect()->back()->with('success', 'Product created successfully.');
    }
 }
