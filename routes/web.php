@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admincontroller;
 use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,12 @@ Route::get('/admin', [homecontroller::class, 'admin']);
 Route::get('/redirect', [homecontroller::class, 'redirect']);
 // logout routes 
 Route::get('/logout', [homecontroller::class, 'logout']);
+
+// all amdin dashboard side routes 
+// categoryu route
+Route::get('/category', [admincontroller::class, 'index']);
+// addd category form route
+Route::post('/add/category', [admincontroller::class, 'store']);
+// delete category 
+Route::get('/delete/category/{id}', [admincontroller::class, 'destroy']);
+
