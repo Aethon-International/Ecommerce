@@ -45,7 +45,7 @@ License: For each use you must have a valid license purchased only from above li
                             <div class="card-body">
                                 <h6 class="card-title">UPDATE PRODUCT FORM</h6>
 
-                                <form class="forms-sample" action="{{ url('/update/product') }}" method="POST"
+                                <form class="forms-sample" action="{{ url('/update/product/'.$product->id) }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
@@ -54,26 +54,26 @@ License: For each use you must have a valid license purchased only from above li
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Name</label>
                                                 <input type="text" name="name" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off"
+                                                    id="exampleInputUsername1"  autocomplete="off"
                                                     value="{{ $product->name }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Price</label>
                                                 <input type="number" name="price" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off"
+                                                    id="exampleInputUsername1"  autocomplete="off"
                                                     value="{{ $product->price }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Original
                                                     Price</label>
                                                 <input type="number" name="original_price" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off"
+                                                    id="exampleInputUsername1"  autocomplete="off"
                                                     value="{{ $product->original_price }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Quantity</label>
                                                 <input type="number" name="quantity" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off"
+                                                    id="exampleInputUsername1"  autocomplete="off"
                                                     value="{{ $product->quantity }}">
                                             </div>
                                         </div>
@@ -82,21 +82,23 @@ License: For each use you must have a valid license purchased only from above li
                                         <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="category_id" class="form-label">Category</label>
-                                                <select name="category_name" class="form-control" id="category_id"
-                                                    required>
-                                                    <option value="" disabled selected>Select Category</option>
-                                                    @foreach ($category as $category)
-                                                        <option value="{{ $category->id }}">{{ $category->name }}
+                                                <select name="category_id" class="form-control" id="category_id">
+                                                    <option value="" disabled>Select Category</option>
+                                                    @foreach ($category as $cat)
+                                                        <option value="{{ $cat->id }}" {{ $cat->id == $product->category_id ? 'selected' : '' }}>
+                                                            {{ $cat->name }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                        </div>
+                                        
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1"
                                                     class="form-label">Description</label>
                                                 <input type="text" name="description" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off"
-                                                    value="{{ $product->desription }}">
+                                                    id="exampleInputUsername1"  autocomplete="off"
+                                                    value="{{ $product->description }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Image</label>

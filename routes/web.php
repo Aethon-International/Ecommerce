@@ -60,7 +60,7 @@ Route::get('/all/products', [productcontroller::class, 'show']);
 // edit products from routes 
 Route::get('/edit/product/{id}', [productcontroller::class, 'edit']);
 //update proeucdt routes
-Route::post('/update/products', [productcontroller::class, 'update']);
+Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
 
 
 

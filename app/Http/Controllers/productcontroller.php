@@ -56,4 +56,32 @@ class productcontroller extends Controller
     $product = product::find($id);
     return view('admin.edit',compact('category','product'));
    }
+   public function update(Request $request, $id)
+{
+    $product = Product::find($id);
+
+    if (!$product) {
+        return redirect()->back()->with('error', 'Product not found.');
+    }
+
+    // Updating product details without validation
+    $product->name = $request->name;
+    $product->price = $request->price;
+    $product->original_price = $request->original_price;
+    $product->quantity = $request->quantity;
+    $product->category_id = $request->category_id; 
+    $product->description = $request->description;
+    $product->status = $request->status;
+
+    // Handling Image Upload
+    if ($request->hasFile('image')) {
+        $imagePath = $request->file('image')->store('public/products');
+        $product->image = str_replace('public/', '', $imagePath);
+    }
+
+    $product->save();
+
+    return redirect('/all/products')->with('success', 'Product updated successfully.');
+
+}
 }
