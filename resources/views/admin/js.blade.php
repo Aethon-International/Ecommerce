@@ -18,3 +18,4 @@
 
 	<script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
 	<script src="../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
+

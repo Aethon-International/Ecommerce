@@ -53,5 +53,15 @@ Route::get('/delete/category/{id}', [admincontroller::class, 'destroy']);
 Route::get('/products', [productcontroller::class, 'index']);
 // add products route data 
 Route::post('/add/product', [productcontroller::class, 'store']);
+// delete product 
+Route::delete('/delete/product/{id}', [productcontroller::class, 'destroy']);
+// show all produts in table seprate table
+Route::get('/all/products', [productcontroller::class, 'show']);
+// edit products from routes 
+Route::get('/edit/product/{id}', [productcontroller::class, 'edit']);
+//update proeucdt routes
+Route::post('/update/products', [productcontroller::class, 'update']);
+
+
 
 

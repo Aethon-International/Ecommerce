@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+   <base href="/public">
+   <!DOCTYPE html>
 <!--
 Template Name: NobleUI - HTML Bootstrap 5 Admin Dashboard Template
 Author: NobleUI
@@ -42,9 +43,9 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="col-md-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h6 class="card-title">ADD PRODUCT FORM</h6>
+                                <h6 class="card-title">UPDATE PRODUCT FORM</h6>
 
-                                <form class="forms-sample" action="{{ url('/add/product') }}" method="POST"
+                                <form class="forms-sample" action="{{ url('/update/product') }}" method="POST"
                                     enctype="multipart/form-data">
                                     @csrf
                                     <div class="row">
@@ -54,26 +55,26 @@ License: For each use you must have a valid license purchased only from above li
                                                 <label for="exampleInputUsername1" class="form-label">Name</label>
                                                 <input type="text" name="name" class="form-control"
                                                     id="exampleInputUsername1" required autocomplete="off"
-                                                    placeholder="Add Product Name Here">
+                                                    value="{{ $product->name }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Price</label>
                                                 <input type="number" name="price" class="form-control"
                                                     id="exampleInputUsername1" required autocomplete="off"
-                                                    placeholder="Add Price Here">
+                                                    value="{{ $product->price }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Original
                                                     Price</label>
                                                 <input type="number" name="original_price" class="form-control"
                                                     id="exampleInputUsername1" required autocomplete="off"
-                                                    placeholder="Add Original Price Here">
+                                                    value="{{ $product->original_price }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Quantity</label>
                                                 <input type="number" name="quantity" class="form-control"
                                                     id="exampleInputUsername1" required autocomplete="off"
-                                                    placeholder="Add Quantity Here">
+                                                    value="{{ $product->quantity }}">
                                             </div>
                                         </div>
 
@@ -95,13 +96,21 @@ License: For each use you must have a valid license purchased only from above li
                                                     class="form-label">Description</label>
                                                 <input type="text" name="description" class="form-control"
                                                     id="exampleInputUsername1" required autocomplete="off"
-                                                    placeholder="Add Description Here">
+                                                    value="{{ $product->desription }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label for="exampleInputUsername1" class="form-label">Image</label>
-                                                <input type="file" name="image" class="form-control"
-                                                    id="exampleInputUsername1" required autocomplete="off">
+                                                <input type="file" name="image" class="form-control" id="exampleInputUsername1" autocomplete="off">
+                                            
+                                                @if ($product->image)
+                                                    <div class="mt-2">
+                                                        <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" width="100">
+                                                    </div>
+                                                @else
+                                                    <p>No Image Available</p>
+                                                @endif
                                             </div>
+                                            
                                             <div class="mb-3">
                                                 <label for="status" class="form-label">Status</label>
                                                 <select name="status" class="form-control" id="status">
@@ -111,7 +120,7 @@ License: For each use you must have a valid license purchased only from above li
                                             </div>
                                         </div>
                                     </div>
-                                    <button type="submit" class="btn btn-primary me-2">Submit</button>
+                                    <button type="submit" class="btn btn-primary me-2">Update</button>
                                 </form>
                             </div>
                         </div>

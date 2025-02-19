@@ -14,7 +14,8 @@ class productcontroller extends Controller
    public function index()
    {
     $category=category::all();
-    return view('admin.product',compact('category'));
+    $product=product::all();
+    return view('admin.product',compact('category','product'));
    }
    public function store(Request $request)
    {
@@ -36,5 +37,23 @@ class productcontroller extends Controller
     $product->save();  // Save the product to the database
 
     return redirect()->back()->with('success', 'Product created successfully.');
+   }
+   public function destroy($id)
+   {
+    $product=product::find($id);
+    $product->delete();
+    return redirect()->back()->with('warning', 'Product deleted successfully.');
+   }
+   public function show()
+   {
+    $category=category::all();
+    $product=product::all();
+    return view('admin.allproducts',compact('category','product'));
+   }
+   public function edit($id)
+   {
+    $category=category::all();
+    $product = product::find($id);
+    return view('admin.edit',compact('category','product'));
    }
 }

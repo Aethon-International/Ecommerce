@@ -32,7 +32,7 @@
                     <a href="{{ url('/products') }}" class="nav-link">Add Products</a>
                   </li>
                   <li class="nav-item">
-                    <a href="pages/email/compose.html" class="nav-link">Compose</a>
+                    <a href="{{ url('/all/products') }}" class="nav-link">All Products</a>
                   </li>
                 </ul>
               </div>
