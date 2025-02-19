@@ -57,13 +57,35 @@
                                             <p>{{ $products->description }}</p>
                                             <div class="d-flex justify-content-between flex-lg-wrap">
                                                 <p class="text-dark fs-5 fw-bold mb-0">${{ $products->original_price }} / kg</p>
-                                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</a>
-                                                <a href="#" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Details</a>
+
+
+
+
+                                                <form action="{{ url('/add/product/cart',$products->id) }}" method="post">
+                                                    @csrf
+                                                    <input style="" class="quanity_dg" name="quantity" type="number" value="1" min="1" area>
+                                                <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
+                                               
+                                            </form>
+
+
+
+                                                <a href="{{ url('/product/details',$products->id) }}" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Details</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 @endforeach
+                               
+                                <div class="d-flex justify-content-start align-items-center mt-2 ">
+                                   
+                                    <div>
+                                        {!! $product->withQueryString()->links('pagination::bootstrap-5') !!}
+                                    </div>
+                                </div>
+                                
+                                
+
                             </div>
                         </div>
                     </div>

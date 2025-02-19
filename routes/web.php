@@ -64,4 +64,11 @@ Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
 
 
 
+/// frontend routes 
+Route::get('/product/details/{id}', [homecontroller::class, 'details']);
+// add to cart routes
+Route::post('/add/product/cart/{id}', [homecontroller::class, 'cart']);
+
+
+
 
