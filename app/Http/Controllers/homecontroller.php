@@ -18,8 +18,8 @@ class homecontroller extends Controller
 {
     public function index()
     {
-        $product=product::paginate(12);
-        return view('frontend.home',compact('product'));
+        $product = product::paginate(12);
+        return view('frontend.home', compact('product'));
     }
     public function admin()
     {
@@ -48,18 +48,16 @@ class homecontroller extends Controller
     }
     public function details($id)
     {
-        $product=product::find($id);
-    return view('frontend.product_details',compact('product'));
+        $product = product::find($id);
+        return view('frontend.product_details', compact('product'));
     }
     public function cart($id)
     {
-  if(Auth::id())
-  {
- 
-  }
-  else
-  {
-    return redirect('/login');
-  }
+        if (Auth::id()) {
+
+        } else
+         {
+            return redirect('/login');
+        }
     }
 }
