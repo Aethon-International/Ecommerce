@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\category;
 use App\Models\product;
 use App\Models\cart;
+use App\Models\order;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -119,5 +120,40 @@ class homecontroller extends Controller
         $cart->delete();
         Alert::success('Success', 'Product Remove From Cart');
            return redirect()->back();
+        }
+        public function cash_order()
+        {
+            $user=Auth::user();
+            $userid=Auth::id();
+            $data=cart::where('user_id','=',$userid)->get();
+            foreach($data as $data)
+            {
+              $order=new order;
+              $order->name=$data->name;
+              $order->email=$data->email;
+              $order->phone=$data->phone;
+              $order->address=$data->address;
+              $order->user_id=$data->user_id;
+              $order->product_title=$data->product_title;
+              $order->quantity=$data->quantity;
+              $order->price=$data->price;
+              $order->image=$data->image;
+              $order->product_id=$data->product_id;
+              
+              $order->payment_status = "pending";
+              $order->delivery_status = "pending";
+              $order->save();
+              
+              $cart_id=$data->id;
+              $cart=cart::find($cart_id);
+              $cart->delete();
+             
+
+            }
+            Alert::success('Success ', 'We Have Recieved Your Order!');
+            return  redirect()->back();
+
+            
+            
         }
 }
