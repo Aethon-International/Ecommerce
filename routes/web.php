@@ -71,6 +71,8 @@ Route::get('/product/details/{id}', [homecontroller::class, 'details']);
 Route::post('/add/product/cart/{id}', [homecontroller::class, 'cart']);
 // show prouducts route
 Route::get('/cart', [homecontroller::class, 'show_cart']);
+// remvoe product from add to catg
+Route::get('/remove/cart/{id}', [homecontroller::class, 'remove_cart']);
 
 
 

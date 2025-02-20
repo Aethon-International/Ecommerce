@@ -19,9 +19,12 @@ use function PHPUnit\Framework\returnSelf;
 class homecontroller extends Controller
 {
     public function index()
+    
     {
         $product = product::paginate(12);
-        return view('frontend.home', compact('product'));
+        $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+        return view('frontend.home', compact('product','cartcount'));
     }
     public function admin()
     {
@@ -35,7 +38,8 @@ class homecontroller extends Controller
         if ($user && $user->usertype == '1') {
             return view('admin.home'); // Admin redirect
         } else {
-            return view('frontend.home'); // Normal user redirect
+            $product = product::paginate(12);
+            return view('frontend.home',compact('product')); // Normal user redirect
         }
     }
     public function logout(Request $request)
@@ -87,10 +91,19 @@ class homecontroller extends Controller
     }
     public function show_cart()
         {
+
             $id=Auth::user()->id;
             $cart = cart::where('user_id',$id)->get();
+            $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
            
 
-            return view('frontend.cart',compact('cart'));
+            return view('frontend.cart',compact('cart','cartcount'));
+        }
+        public function remove_cart($id)
+        {
+        $cart=cart::find($id);
+        $cart->delete();
+        Alert::success('Success', 'Product Remove From Cart');
+           return redirect()->back();
         }
 }

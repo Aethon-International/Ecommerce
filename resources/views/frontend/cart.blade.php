@@ -66,9 +66,9 @@
                             <p class="mb-0 mt-4">{{ $cart->quantity *  $cart->price }} $</p>
                         </td>
                         <td>
-                            <button class="btn btn-md rounded-circle bg-light border mt-4" >
+                            <a href="{{ url('/remove/cart',$cart->id) }}" class="btn btn-md rounded-circle bg-light border mt-4" >
                                 <i class="fa fa-times text-danger"></i>
-                            </button>
+                            </a>
                         </td>
                     
                     </tr>
