@@ -69,7 +69,13 @@ Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
 Route::get('/product/details/{id}', [homecontroller::class, 'details']);
 // add to cart routes
 Route::post('/add/product/cart/{id}', [homecontroller::class, 'cart']);
+// show prouducts route
+Route::get('/cart', [homecontroller::class, 'show_cart']);
 
+
+
+
+// testigtnf sweet alert works or not 
 Route::get('/test-alert', function() {
     Alert::success('Hello!', 'SweetAlert is working!');
     return view('welcome');

@@ -65,7 +65,7 @@ class homecontroller extends Controller
             $cart->phone=$user->phone;
             $cart->address=$user->address;
             $cart->product_title=$product->name;
-            $cart->price=$product->price *  $request->quantity;
+            $cart->price=$product->price;
             $cart->quantity=$request->quantity;
             $cart->image=$product->image;
             $cart->product_id=$product->id;
@@ -83,5 +83,14 @@ class homecontroller extends Controller
             Alert::error('Access Denied', 'Please login first!');
            return redirect()->back();
         }
+        
     }
+    public function show_cart()
+        {
+            $id=Auth::user()->id;
+            $cart = cart::where('user_id',$id)->get();
+           
+
+            return view('frontend.cart',compact('cart'));
+        }
 }
