@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\category;
 use App\Models\product;
 use App\Models\cart;
+use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -55,7 +56,8 @@ class homecontroller extends Controller
     public function details($id)
     {
         $product = product::find($id);
-        return view('frontend.product_details', compact('product'));
+        $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+        return view('frontend.product_details', compact('product','cartcount'));
     }
     public function cart(Request $request ,$id)
     {
@@ -92,12 +94,24 @@ class homecontroller extends Controller
     public function show_cart()
         {
 
+            $user=Auth::user();
             $id=Auth::user()->id;
             $cart = cart::where('user_id',$id)->get();
+            //cart items coutn 
             $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+            $subtotal = Cart::where('user_id', Auth::id())
+    ->select(DB::raw('SUM(price * quantity) as total_price'))
+    ->value('total_price');
+
+     $subquantity = Cart::where('user_id', Auth::id())->sum('quantity');
+
+// Total (No need to add quantity to price)
+           $total = $subtotal ?? 0; // Handle null case
+
            
 
-            return view('frontend.cart',compact('cart','cartcount'));
+            return view('frontend.cart',compact('cart','cartcount','subtotal','user'));
         }
         public function remove_cart($id)
         {
