@@ -17,3 +17,10 @@
 
  <!-- Template Stylesheet -->
  <link href="/frontend/css/style.css" rel="stylesheet">
+
+
+ <!-- SweetAlert CSS -->
+
+<!-- SweetAlert CSS -->
+
+<!-- SweetAlert JS -->

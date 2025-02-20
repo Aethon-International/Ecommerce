@@ -63,7 +63,7 @@
 
                                                 <form action="{{ url('/add/product/cart',$products->id) }}" method="post">
                                                     @csrf
-                                                    <input style="" class="quanity_dg" name="quantity" type="number" value="1" min="1" area>
+                                                    <input style="display:none" class="quanity_dg" name="quantity" id="quantity" type="number" value="1" min="1" area>
                                                 <button type="submit" class="btn border border-secondary rounded-pill px-3 text-primary"><i class="fa fa-shopping-bag me-2 text-primary"></i> Add to cart</button>
                                                
                                             </form>

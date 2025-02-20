@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\category;
 use App\Models\product;
+use App\Models\cart;
+use Session;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -51,13 +53,35 @@ class homecontroller extends Controller
         $product = product::find($id);
         return view('frontend.product_details', compact('product'));
     }
-    public function cart($id)
+    public function cart(Request $request ,$id)
     {
         if (Auth::id()) {
+            $user=Auth::user();
+           
+            $product=product::find($id);
+            $cart = new cart();
+            $cart->name=$user->name;
+            $cart->email=$user->email;
+            $cart->phone=$user->phone;
+            $cart->address=$user->address;
+            $cart->product_title=$product->name;
+            $cart->price=$product->price *  $request->quantity;
+            $cart->quantity=$request->quantity;
+            $cart->image=$product->image;
+            $cart->product_id=$product->id;
+            $cart->user_id=$user->id;
+            $cart->save();
+           
+            Alert::success('Success', 'Product added to cart successfully!');
+            return redirect()->back();
+         
+
+
 
         } else
          {
-            return redirect('/login');
+            Alert::error('Access Denied', 'Please login first!');
+           return redirect()->back();
         }
     }
 }

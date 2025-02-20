@@ -5,6 +5,7 @@ use App\Http\Controllers\homecontroller;
 use App\Http\Controllers\productcontroller;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use RealRashid\SweetAlert\Facades\Alert;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +69,12 @@ Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
 Route::get('/product/details/{id}', [homecontroller::class, 'details']);
 // add to cart routes
 Route::post('/add/product/cart/{id}', [homecontroller::class, 'cart']);
+
+Route::get('/test-alert', function() {
+    Alert::success('Hello!', 'SweetAlert is working!');
+    return view('welcome');
+});
+
 
 
 
