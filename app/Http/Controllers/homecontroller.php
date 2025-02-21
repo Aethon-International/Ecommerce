@@ -176,9 +176,6 @@ class homecontroller extends Controller
             Alert::success('Success ', 'Product Remove From Orders!');
             
         }
-
-        
-    
         return redirect()-> back();
         Alert::warning('Warning ', 'Order Cannot Be Modified!');
 

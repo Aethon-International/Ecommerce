@@ -62,6 +62,11 @@ Route::get('/all/products', [productcontroller::class, 'show']);
 Route::get('/edit/product/{id}', [productcontroller::class, 'edit']);
 //update proeucdt routes
 Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
+// route for orders
+Route::get('/orders/route', [productcontroller::class, 'orders']);
+//  update order status 
+Route::post('/update/order/status/{id}', [productcontroller::class, 'update_delivery_status']);
+
 
 
 

@@ -19,3 +19,17 @@
 	<script src="../assets/vendors/datatables.net/jquery.dataTables.js"></script>
 	<script src="../assets/vendors/datatables.net-bs5/dataTables.bootstrap5.js"></script>
 
+
+
+	<script>
+		function confirmStatusChange(event, orderId) {
+			const newStatus = event.target.value;
+			const confirmation = confirm(`Are you sure you want to change the status to "${newStatus}"?`);
+	
+			if (confirmation) {
+				document.getElementById(`update-form-${orderId}`).submit();
+			} else {
+				event.target.value = event.target.getAttribute('data-current-status'); // Reset to previous value
+			}
+		}
+	</script>

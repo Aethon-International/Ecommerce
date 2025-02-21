@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\category;
 use App\Models\product;
+use App\Models\order;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -83,5 +84,18 @@ class productcontroller extends Controller
 
     return redirect('/all/products')->with('success', 'Product updated successfully.');
 
+}
+public function  orders()
+{
+    $orders=order::all();
+    return view('admin.orders',compact('orders'));
+}
+public function update_delivery_status( Request $request,$id)
+{
+    $order = Order::findOrFail($id);
+    $order->delivery_status = $request->delivery_status; 
+    $order->save(); 
+
+    return redirect()->back()->with('success', 'Delivery status updated successfully.');
 }
 }

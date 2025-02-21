@@ -34,6 +34,9 @@
                   <li class="nav-item">
                     <a href="{{ url('/all/products') }}" class="nav-link">All Products</a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ url('/orders/route') }}" class="nav-link">Orders</a>
+                  </li>
                 </ul>
               </div>
             </li>
