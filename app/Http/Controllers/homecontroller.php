@@ -36,12 +36,13 @@ class homecontroller extends Controller
     {
 
         $user = Auth::user(); // Logged-in user
+        $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
 
         if ($user && $user->usertype == '1') {
             return view('admin.home'); // Admin redirect
         } else {
             $product = product::paginate(12);
-            return view('frontend.home',compact('product')); // Normal user redirect
+            return view('frontend.home',compact('product','cartcount')); // Normal user redirect
         }
     }
     public function logout(Request $request)
@@ -140,7 +141,7 @@ class homecontroller extends Controller
               $order->image=$data->image;
               $order->product_id=$data->product_id;
               
-              $order->payment_status = "pending";
+              $order->payment_status = "cash on delivery";
               $order->delivery_status = "pending";
               $order->save();
               
@@ -156,4 +157,14 @@ class homecontroller extends Controller
             
             
         }
+        public function orders()
+    {
+        $user = Auth::user();
+         $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+         $userid=Auth::id();
+            $order=order::where('user_id','=',$userid)->get();
+        
+
+        return view('frontend.orders',compact('cartcount','order'));
+    }
 }

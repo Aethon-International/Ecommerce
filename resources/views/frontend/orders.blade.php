@@ -35,7 +35,9 @@
                     <th scope="col">Name</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Payment</th>
+                    <th scope="col">SubTotal</th>
+                    <th scope="col">Delivery Status</th>
                     <th scope="col">Handle</th>
                   </tr>
                 </thead>
@@ -45,71 +47,53 @@
                 <tbody>
                  
                         
-                   
+                    @foreach ($order as  $order)
                     <tr>
-                        @foreach ($cart as $cart )
+                      
+                            
+                       
+                      
                         <th scope="row">
                             <div class="d-flex align-items-center">
-                                <img src="/storage/{{$cart->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                <img src="/storage/{{$order->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
                         <td>
-                            <p class="mb-0 mt-4">{{ $cart->product_title }}</p>
+                            <p class="mb-0 mt-4">{{$order->product_title}}</p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{ $cart->price }} $</p>
+                            <p class="mb-0 mt-4">{{$order->price}} $</p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{ $cart->quantity }} </p>
+                            <p class="mb-0 mt-4">{{$order->quantity}} </p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{ $cart->quantity *  $cart->price }} $</p>
+                            <p class="mb-0 mt-4">{{$order->payment_status}}</p>
                         </td>
                         <td>
-                            <a href="{{ url('/remove/cart',$cart->id) }}" class="btn btn-md rounded-circle bg-light border mt-4" >
+                            <p class="mb-0 mt-4">{{$order->quantity *  $order->price}}</p>
+                        </td>
+                        <td>
+                            <p class="mb-0 mt-4">{{$order->delivery_status}}</p>
+                        </td>
+                        <td>
+                            <a href="" class="btn btn-md rounded-circle bg-light border mt-4" >
                                 <i class="fa fa-times text-danger"></i>
                             </a>
                         </td>
                     
                     </tr>
                   
-                            
+                    @endforeach
                         </td>
-                        @endforeach
+                      
                     </tr>
                 </tbody>
             </table>
           
         </div>
-        <div class="mt-5">
-            <input type="text" class="border-0 border-bottom rounded me-5 py-3 mb-4" placeholder="Coupon Code">
-            <button class="btn border-secondary rounded-pill px-4 py-3 text-primary" type="button">Apply Coupon</button>
-        </div>
-        <div class="row g-4 justify-content-end">
-            <div class="col-8"></div>
-            <div class="col-sm-8 col-md-7 col-lg-6 col-xl-4">
-                <div class="bg-light rounded">
-                    <div class="p-4">
-                        <h1 class="display-6 mb-4">Cart <span class="fw-normal">Total</span></h1>
-                        <div class="d-flex justify-content-between mb-4">
-                            <h5 class="mb-0 me-4">Subtotal:</h5>
-                            <p class="mb-0">${{ $subtotal }}</p>
-                        </div>
-                        <div class="d-flex justify-content-between">
-                            <h5 class="mb-0 me-4">Shipping</h5>
-                            <div class="">
-                                <p class="mb-0">Flat rate: $0.00</p>
-                            </div>
-                        </div>
-                        <p class="mb-0 text-end">{{ $user->address }}.</p>
-                    </div>
-                    <div class="py-4 mb-4 border-top border-bottom d-flex justify-content-between">
-                        <h5 class="mb-0 ps-4 me-4">Total</h5>
-                        <p class="mb-0 pe-4">${{ $subtotal }}</p>
-                    </div>
-                    <a href="{{ url('/cash/order') }}" class="btn border-secondary rounded-pill px-4 py-3 text-primary text-uppercase mb-4 ms-4" type="button">Cash On Delivery</a>
-                </div>
-            </div>
+        
+        
         </div>
     </div>
 </div>

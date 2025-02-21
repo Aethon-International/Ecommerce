@@ -75,6 +75,8 @@ Route::get('/cart', [homecontroller::class, 'show_cart']);
 Route::get('/remove/cart/{id}', [homecontroller::class, 'remove_cart']);
 // move cart item to order table 
 Route::get('/cash/order', [homecontroller::class, 'cash_order']);
+// all orders route
+Route::get('/orders', [homecontroller::class, 'orders']);
 
 
 
