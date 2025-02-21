@@ -71,13 +71,13 @@
                             <p class="mb-0 mt-4">{{$order->payment_status}}</p>
                         </td>
                         <td>
-                            <p class="mb-0 mt-4">{{$order->quantity *  $order->price}}</p>
+                            <p class="mb-0 mt-4">${{$order->quantity *  $order->price}}</p>
                         </td>
                         <td>
                             <p class="mb-0 mt-4">{{$order->delivery_status}}</p>
                         </td>
                         <td>
-                            <a href="" class="btn btn-md rounded-circle bg-light border mt-4" >
+                            <a href="{{url('/remove/orders',$order->id)}}" class="btn btn-md rounded-circle bg-light border mt-4" >
                                 <i class="fa fa-times text-danger"></i>
                             </a>
                         </td>

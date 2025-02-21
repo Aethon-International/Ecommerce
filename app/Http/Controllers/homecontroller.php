@@ -152,7 +152,7 @@ class homecontroller extends Controller
 
             }
             Alert::success('Success ', 'We Have Recieved Your Order!');
-            return  redirect()->back();
+            return  redirect('/orders');
 
             
             
@@ -166,5 +166,21 @@ class homecontroller extends Controller
         
 
         return view('frontend.orders',compact('cartcount','order'));
+    }
+    public function remove_orders($id)
+    {
+        $order = order::find($id);
+
+        if ($order && $order->delivery_status == 'pending') {
+            $order->delete(); 
+            Alert::success('Success ', 'Product Remove From Orders!');
+            
+        }
+
+        
+    
+        return redirect()-> back();
+        Alert::warning('Warning ', 'Order Cannot Be Modified!');
+
     }
 }

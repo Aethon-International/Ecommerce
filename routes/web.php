@@ -77,6 +77,8 @@ Route::get('/remove/cart/{id}', [homecontroller::class, 'remove_cart']);
 Route::get('/cash/order', [homecontroller::class, 'cash_order']);
 // all orders route
 Route::get('/orders', [homecontroller::class, 'orders']);
+//cancel order 
+Route::get('/remove/orders/{id}', [homecontroller::class, 'remove_orders']);
 
 
 
