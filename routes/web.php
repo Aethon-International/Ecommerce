@@ -85,6 +85,9 @@ Route::get('/orders', [homecontroller::class, 'orders']);
 //cancel order 
 Route::get('/remove/orders/{id}', [homecontroller::class, 'remove_orders']);
 Route::get('/search', [homecontroller::class, 'product_search']);
+// for verify pushing code
+
+
 
 
 
