@@ -12,4 +12,8 @@ class product extends Model
 {
     return $this->belongsTo(Category::class, 'category_id');
 }
+protected $fillable = [
+    'image',
+  
+];
 }

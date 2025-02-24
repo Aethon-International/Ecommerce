@@ -33,7 +33,7 @@
                         <div class="border rounded">
                             @if($product)
     <a href="#">
-        <img src="/storage/{{$product->image}}" class="img-fluid rounded" alt="Image">
+        <img src="/product/{{$product->image}}" class="img-fluid rounded" alt="Image">
     </a>
 @else
     <p>Product not found</p>

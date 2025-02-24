@@ -180,4 +180,13 @@ class homecontroller extends Controller
         Alert::warning('Warning ', 'Order Cannot Be Modified!');
 
     }
+      
+    public function product_search(Request $request){
+        $search_text=$request->search;
+        $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+    
+        $product=product::where('name','LIKE',"%$search_text%")->orwhere('category_id','LIKE',"$search_text")->paginate(12);
+        return view('frontend.home',compact('product','cartcount'));
+
+}
 }

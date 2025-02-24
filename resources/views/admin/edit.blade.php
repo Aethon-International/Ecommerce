@@ -106,7 +106,7 @@ License: For each use you must have a valid license purchased only from above li
                                             
                                                 @if ($product->image)
                                                     <div class="mt-2">
-                                                        <img src="{{ asset('storage/' . $product->image) }}" alt="Product Image" width="100">
+                                                        <img src="/product/{{$product->image}}" alt="Product Image" width="100">
                                                     </div>
                                                 @else
                                                     <p>No Image Available</p>

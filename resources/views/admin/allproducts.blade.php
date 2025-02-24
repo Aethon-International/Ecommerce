@@ -78,28 +78,27 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach($product as $product)
+                                            @foreach($product as $products)
                                             <tr>
-                                                <td>{{ $product->id }}</td>
-                                                <td>{{ $product->name }}</td>
-                                                <td>{{ $product->description }}</td>
-                                                <td>{{ $product->category_id }}</td> <!-- Make sure category_name is stored in DB -->
-                                                <td>{{ $product->price }}</td>
-                                                <td>{{ $product->original_price }}</td>
-                                                <td>{{ $product->quantity }}</td>
+                                                <td>{{ $products->id }}</td>
+                                                <td>{{ $products->name }}</td>
+                                                <td>{{ $products->description }}</td>
+                                                <td>{{ $products->category_id }}</td> <!-- Make sure category_name is stored in DB -->
+                                                <td>{{ $products->price }}</td>
+                                                <td>{{ $products->original_price }}</td>
+                                                <td>{{ $products->quantity }}</td>
                                                 <td>
-                                                    @if($product->image)
-                                                        <img src="{{ asset('storage/' . $product->image) }}" width="100">
-                                                    @else
-                                                        <p>No Image</p>
-                                                    @endif
+                                                  
+                                                  <!-- Assuming you have a product object passed to the view -->
+                                                  <img class="image_size" src="/product/{{$products->image}}" >
+                                                  
                                                 </td>
-                                                <td>{{ $product->status }}</td>
+                                                <td>{{ $products->status }}</td>
                                                 <td>
-                                                    <a href="{{ url('/edit/product/' . $product->id) }}" class="btn btn-primary btn-sm">Update</a>
+                                                    <a href="{{ url('/edit/product/' . $products->id) }}" class="btn btn-primary btn-sm">Update</a>
                                                 </td>
                                                 <td>
-                                                    <form action="{{ url('/delete/product/'.$product->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
+                                                    <form action="{{ url('/delete/product/'.$products->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this product?');">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button type="submit" class="btn btn-danger btn-sm">Delete</button>

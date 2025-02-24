@@ -31,9 +31,15 @@ class productcontroller extends Controller
     $product->status = $request->status;
 
     // Handling the image upload if present
-    if ($request->hasFile('image')) {
-        $product->image = $request->file('image')->store('product_images', 'public');
+    $image=$request->image;
+    if($image)
+    {
+     $imagename=time().'.'.$image->getClientOriginalExtension();
+     $request->image->move('product',$imagename);
+     $product->image=$imagename;
+  
     }
+    
 
     $product->save();  // Save the product to the database
 
@@ -74,12 +80,14 @@ class productcontroller extends Controller
     $product->description = $request->description;
     $product->status = $request->status;
 
-    // Handling Image Upload
-    if ($request->hasFile('image')) {
-        $imagePath = $request->file('image')->store('public/products');
-        $product->image = str_replace('public/', '', $imagePath);
+    $image=$request->image;
+    if($image)
+    {
+     $imagename=time().'.'.$image->getClientOriginalExtension();
+     $request->image->move('product',$imagename);
+     $product->image=$imagename;
+  
     }
-
     $product->save();
 
     return redirect('/all/products')->with('success', 'Product updated successfully.');

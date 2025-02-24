@@ -94,7 +94,7 @@
                                                 <td>{{ $order->user_id }}</td>
                                                 <td>
                                                     @if($order->image)
-                                                        <img src="{{ asset('storage/' . $order->image) }}" width="100">
+                                                        <img src="/product/{{$order->image}}" width="100">
                                                     @else
                                                         <p>No Image</p>
                                                     @endif
@@ -107,7 +107,7 @@
                                                 <td>
                                                     <form action="{{ url('update/order/status', $order->id) }}" method="POST">
                                                         @csrf
-                                                        <select name="delivery_status" class="form-select" onchange="this.form.submit()">
+                                                        <select name="delivery_status" onclick="confirm" class="form-select" onchange="this.form.submit()">
                                                             <option value="pending" {{ $order->delivery_status == 'pending' ? 'selected' : '' }}>Pending</option>
                                                             <option value="shipped" {{ $order->delivery_status == 'shipped' ? 'selected' : '' }}>Shipped</option>
                                                             <option value="delivered" {{ $order->delivery_status == 'delivered' ? 'selected' : '' }}>Delivered</option>
