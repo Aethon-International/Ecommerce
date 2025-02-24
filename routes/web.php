@@ -84,8 +84,13 @@ Route::get('/cash/order', [homecontroller::class, 'cash_order']);
 Route::get('/orders', [homecontroller::class, 'orders']);
 //cancel order 
 Route::get('/remove/orders/{id}', [homecontroller::class, 'remove_orders']);
+// product searvh system
 Route::get('/search', [homecontroller::class, 'product_search']);
-// for verify pushing code
+// search for shop page search seprate
+Route::get('/search/shop', [homecontroller::class, 'shop_search']);
+// seprate shop page 
+Route::get('/shop/page', [homecontroller::class, 'shop']);
+
 
 
 

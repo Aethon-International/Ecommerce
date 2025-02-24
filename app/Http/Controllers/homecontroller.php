@@ -189,4 +189,18 @@ class homecontroller extends Controller
         return view('frontend.home',compact('product','cartcount'));
 
 }
+public function shop_search(Request $request){
+    $search_text=$request->search;
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+    $product=product::where('name','LIKE',"%$search_text%")->orwhere('category_id','LIKE',"$search_text")->paginate(12);
+    return view('frontend.shop_page',compact('product','cartcount'));
+}
+
+public function shop()
+{
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+    $product = product::paginate(12);
+    return view('frontend.shop_page',compact('cartcount','product'));
+}
 }
