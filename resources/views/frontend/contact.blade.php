@@ -51,9 +51,9 @@
                 <div class="col-lg-7">
                     <form action="{{url('/contact/form')}}" method="post" class="">
                         @csrf
-                        <input type="text" name="name" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name">
-                        <input type="email" name="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email">
-                        <textarea type="text" name="messages" class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message"></textarea>
+                        <input required type="text" name="name" class="w-100 form-control border-0 py-3 mb-4" placeholder="Your Name">
+                        <input required type="email" name="email" class="w-100 form-control border-0 py-3 mb-4" placeholder="Enter Your Email">
+                        <textarea required type="text" name="messages" class="w-100 form-control border-0 mb-4" rows="5" cols="10" placeholder="Your Message"></textarea>
                         <button class="w-100 btn form-control border-secondary py-3 bg-white text-primary " type="submit">Submit</button>
                     </form>
                 </div>

@@ -33,7 +33,19 @@ class homecontroller extends Controller
     }
     public function admin()
     {
-        return view('admin.home');
+     
+        
+            $totalusers = user::count(); // Total users
+            $totalorders = order::count(); // Total orders
+        
+            // Count orders by status
+            $pendingorders = order::where('delivery_status', 'pending')->count();
+            $shippedorders = order::where('delivery_status', 'shipped')->count();
+            $deliveredorders = order::where('delivery_status', 'delivered')->count();
+            $canceledorders = order::where('delivery_status', 'canceled')->count();
+                return view('admin.home',compact('totalusers','totalorders','shippedorders','pendingorders','deliveredorders','canceledorders',));
+       
+        
     }
     public function redirect()
     {
@@ -97,26 +109,37 @@ class homecontroller extends Controller
         
     }
     public function show_cart()
+  
+
         {
 
-            $user=Auth::user();
-            $id=Auth::user()->id;
-            $cart = cart::where('user_id',$id)->get();
-            //cart items coutn 
-            $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+            if (Auth::id())
+            {
+                $user=Auth::user();
+                $id=Auth::user()->id;
+                $cart = cart::where('user_id',$id)->get();
+                //cart items coutn 
+                $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+    
+                $subtotal = Cart::where('user_id', Auth::id())
+        ->select(DB::raw('SUM(price * quantity) as total_price'))
+        ->value('total_price');
+    
+         $subquantity = Cart::where('user_id', Auth::id())->sum('quantity');
+    
+    // Total (No need to add quantity to price)
+               $total = $subtotal ?? 0; // Handle null case
+            
+    
+               
+    
+                return view('frontend.cart',compact('cart','cartcount','subtotal','user'));
+            } else{
+                $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+                return view('frontend.error',compact('cartcount'));
+            }
 
-            $subtotal = Cart::where('user_id', Auth::id())
-    ->select(DB::raw('SUM(price * quantity) as total_price'))
-    ->value('total_price');
-
-     $subquantity = Cart::where('user_id', Auth::id())->sum('quantity');
-
-// Total (No need to add quantity to price)
-           $total = $subtotal ?? 0; // Handle null case
-
-           
-
-            return view('frontend.cart',compact('cart','cartcount','subtotal','user'));
+            
         }
         public function remove_cart($id)
         {
@@ -317,5 +340,12 @@ public function subscribe(Request $request)
     Alert::success('Success', 'Subscription Successful! You will receive daily updates.');
 
     return redirect()->back();
+}
+public function error()
+{
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+    $product = product::paginate(12);
+    return view('frontend.error',compact('cartcount','product'));
+    
 }
 }

@@ -37,7 +37,7 @@ require __DIR__.'/auth.php';
 //frontedn routes
 Route::get('/', [homecontroller::class, 'index']);
 //backend rotute
-Route::get('/admin', [homecontroller::class, 'admin']);
+Route::get('/admin', [homecontroller::class, 'admin']) ->middleware(['auth', 'admin']);
 // user admin seprate login 
 Route::get('/redirect', [homecontroller::class, 'redirect']);
 // logout routes 
@@ -45,27 +45,29 @@ Route::get('/logout', [homecontroller::class, 'logout']);
 
 // all amdin dashboard side routes 
 // categoryu route
-Route::get('/category', [admincontroller::class, 'index']);
+Route::get('/category', [admincontroller::class, 'index'])->middleware(['auth', 'admin']);
 // addd category form route
 Route::post('/add/category', [admincontroller::class, 'store']);
 // delete category 
 Route::get('/delete/category/{id}', [admincontroller::class, 'destroy']);
 // producdt route
-Route::get('/products', [productcontroller::class, 'index']);
+Route::get('/products', [productcontroller::class, 'index'])->middleware(['auth', 'admin']);
 // add products route data 
 Route::post('/add/product', [productcontroller::class, 'store']);
 // delete product 
 Route::delete('/delete/product/{id}', [productcontroller::class, 'destroy']);
 // show all produts in table seprate table
-Route::get('/all/products', [productcontroller::class, 'show']);
+Route::get('/all/products', [productcontroller::class, 'show'])->middleware(['auth', 'admin']);
 // edit products from routes 
 Route::get('/edit/product/{id}', [productcontroller::class, 'edit']);
 //update proeucdt routes
 Route::POST('/update/product/{id}', [productcontroller::class, 'update']);
 // route for orders
-Route::get('/orders/route', [productcontroller::class, 'orders']);
+Route::get('/orders/route', [productcontroller::class, 'orders'])->middleware(['auth', 'admin']);
 //  update order status 
 Route::post('/update/order/status/{id}', [productcontroller::class, 'update_delivery_status']);
+// all mesages from contact form
+Route::get('/messages', [productcontroller::class, 'msg'])->middleware(['auth', 'admin']);
 
 
 
@@ -103,6 +105,8 @@ Route::get('/contact', [homecontroller::class, 'contact']);
 Route::post('/contact/form', [homecontroller::class, 'contact_form']);
 // subscribe 
 Route::post('/subscribe', [homecontroller::class, 'subscribe']);
+// error page 404 not found
+Route::get('/error', [homecontroller::class, 'error']);
 
 
 

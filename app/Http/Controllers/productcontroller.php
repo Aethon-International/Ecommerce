@@ -5,6 +5,7 @@ use App\Models\User;
 use App\Models\category;
 use App\Models\product;
 use App\Models\order;
+use App\Models\contact;
 use Illuminate\Support\Facades\Auth;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Http\Request;
@@ -105,5 +106,10 @@ public function update_delivery_status( Request $request,$id)
     $order->save(); 
 
     return redirect()->back()->with('success', 'Delivery status updated successfully.');
+}
+public function msg()
+{
+    $contact=contact::all();
+    return view('admin.contact',compact('contact'));
 }
 }

@@ -55,7 +55,7 @@
                       
                         <th scope="row">
                             <div class="d-flex align-items-center">
-                                <img src="/storage/{{$order->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                <img src="/product/{{$order->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
                         <td>

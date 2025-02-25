@@ -50,7 +50,7 @@
                         @foreach ($cart as $cart )
                         <th scope="row">
                             <div class="d-flex align-items-center">
-                                <img src="/storage/{{$cart->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
+                                <img src="/product/{{$cart->image}}" class="img-fluid me-5 rounded-circle" style="width: 80px; height: 80px;" alt="">
                             </div>
                         </th>
                         <td>

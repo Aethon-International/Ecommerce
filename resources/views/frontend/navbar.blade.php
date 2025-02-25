@@ -29,9 +29,7 @@
                         <div class="dropdown-menu m-0 bg-secondary rounded-0">
                             <a href="{{ url('/cart') }}" class="dropdown-item">Cart</a>
                             <a href="{{ url('/orders') }}" class="dropdown-item">Orders</a>
-                            <a href="chackout.html" class="dropdown-item">Chackout</a>
-                            <a href="testimonial.html" class="dropdown-item">Testimonial</a>
-                            <a href="404.html" class="dropdown-item">404 Page</a>
+                            
                         </div>
                     </div>
                     <a href="{{url('/contact')}}" class="nav-item nav-link">Contact</a>
