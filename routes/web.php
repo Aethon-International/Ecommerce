@@ -90,6 +90,21 @@ Route::get('/search', [homecontroller::class, 'product_search']);
 Route::get('/search/shop', [homecontroller::class, 'shop_search']);
 // seprate shop page 
 Route::get('/shop/page', [homecontroller::class, 'shop']);
+// category alll
+Route::get('/apple', [homecontroller::class, 'apple']);
+Route::get('/oranges', [homecontroller::class, 'oranges']);
+Route::get('/bnana', [homecontroller::class, 'bnana']);
+Route::get('/strabury', [homecontroller::class, 'apple']);
+/// all category end here you ca add manual category ok
+
+//contact form roue indes
+Route::get('/contact', [homecontroller::class, 'contact']);
+// contact form uploda 
+Route::post('/contact/form', [homecontroller::class, 'contact_form']);
+// subscribe 
+Route::post('/subscribe', [homecontroller::class, 'subscribe']);
+
+
 
 
 

@@ -34,7 +34,7 @@
                             <a href="404.html" class="dropdown-item">404 Page</a>
                         </div>
                     </div>
-                    <a href="contact.html" class="nav-item nav-link">Contact</a>
+                    <a href="{{url('/contact')}}" class="nav-item nav-link">Contact</a>
                     @if (Route::has('login'))
                     @auth
                     <a href="{{ url('/logout') }}" class="nav-item nav-link">Logout</a>
@@ -52,7 +52,7 @@
                         <i class="fa fa-shopping-bag fa-2x"></i>
                         <span class="position-absolute bg-secondary rounded-circle d-flex align-items-center justify-content-center text-dark px-1" style="top: -5px; left: 15px; height: 20px; min-width: 20px;">{{ $cartcount }}</span>
                     </a>
-                    <a href="#" class="my-auto">
+                    <a href="{{url('/profile')}}" class="my-auto">
                         <i class="fas fa-user fa-2x"></i>
                     </a>
                 </div>

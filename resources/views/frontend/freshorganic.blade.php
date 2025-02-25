@@ -4,7 +4,9 @@
         <h1 class="mb-0">Fresh Organic Vegetables</h1>
         <div class="owl-carousel vegetable-carousel justify-content-center">
        
+         
               
+       
           
             <div class="border border-primary rounded position-relative vesitable-item">
                 <div class="vesitable-img">
@@ -20,7 +22,7 @@
                     </div>
                 </div>
             </div>
-          
+            
         </div>
     </div>
 </div>

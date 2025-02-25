@@ -7,6 +7,9 @@ use App\Models\category;
 use App\Models\product;
 use App\Models\cart;
 use App\Models\order;
+use App\Models\contact;
+use App\Models\notifications;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\DB;
 use Session;
 use Illuminate\Support\Facades\Auth;
@@ -202,5 +205,117 @@ public function shop()
     $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
     $product = product::paginate(12);
     return view('frontend.shop_page',compact('cartcount','product'));
+}
+public function apple(Request $request)
+{
+    $search_text = 'apple';
+
+    // Get the category ID where name matches 'apple'
+    $category = Category::where('name', 'LIKE', "%$search_text%")->first();
+    
+    $category_id = $category ? $category->id : null;
+    
+    // Search products by name or category_id
+    $product = product::where('name', 'LIKE', "%$search_text%")
+        ->orWhere('category_id', $category_id)
+        ->paginate(12);
+    
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+    return view('frontend.shop_page',compact('cartcount','product'));
+}
+public function oranges(Request $request)
+{
+    $search_text = 'oragnes';
+
+    // Get the category ID where name matches 'apple'
+    $category = Category::where('name', 'LIKE', "%$search_text%")->first();
+    
+    $category_id = $category ? $category->id : null;
+    
+    // Search products by name or category_id
+    $product = product::where('name', 'LIKE', "%$search_text%")
+        ->orWhere('category_id', $category_id)
+        ->paginate(12);
+    
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+    return view('frontend.shop_page',compact('cartcount','product'));
+}
+public function bnana(Request $request)
+{
+    $search_text = 'bnana';
+
+    // Get the category ID where name matches 'apple'
+    $category = Category::where('name', 'LIKE', "%$search_text%")->first();
+    
+    $category_id = $category ? $category->id : null;
+    
+    // Search products by name or category_id
+    $product = product::where('name', 'LIKE', "%$search_text%")
+        ->orWhere('category_id', $category_id)
+        ->paginate(12);
+    
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+    return view('frontend.shop_page',compact('cartcount','product'));
+}
+public function strabury(Request $request)
+{
+    $search_text = 'strabury';
+
+    // Get the category ID where name matches 'apple'
+    $category = Category::where('name', 'LIKE', "%$search_text%")->first();
+    
+    $category_id = $category ? $category->id : null;
+    
+    // Search products by name or category_id
+    $product = product::where('name', 'LIKE', "%$search_text%")
+        ->orWhere('category_id', $category_id)
+        ->paginate(12);
+    
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+
+    return view('frontend.shop_page',compact('cartcount','product'));
+}
+public function contact()
+{
+    
+    $cartcount = Auth::check() ? cart::where('user_id', Auth::id())->count() : 0;
+    $product = product::paginate(12);
+    return view('frontend.contact',compact('cartcount','product'));
+
+}
+public function contact_form(Request $request)
+{
+    $contact=new contact();
+    $contact->name=$request->name;
+    $contact->email=$request->email;
+    $contact->messages=$request->messages;
+    $contact->save();
+    Alert::success('Success ', 'We Have Recieved Your Inquery!');
+    return redirect()-> back();
+       
+
+}
+public function subscribe(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'email' => 'required|email|unique:notifications,email', // Ensure 'subscribes' is correct
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    // Create a new instance of Subscribe model
+    $subscribe = new notifications();
+    $subscribe->email = $request->email;
+    $subscribe->save();
+
+    // Show success message
+    Alert::success('Success', 'Subscription Successful! You will receive daily updates.');
+
+    return redirect()->back();
 }
 }
